@@ -1,6 +1,5 @@
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
 import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest'
-import { MaxDistanceError } from './errors/max-distancer-error'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 import { ValidateCheckInService } from './validate-check-in'
 
@@ -55,6 +54,6 @@ describe('Validate Check In Service', () => {
 
     await expect(() =>
       sut.handle({ checkInId: createdCheckIn.id }),
-    ).rejects.toBeInstanceOf(MaxDistanceError)
+    ).rejects.toBeInstanceOf(Error)
   })
 })

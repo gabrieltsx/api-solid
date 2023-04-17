@@ -1,7 +1,7 @@
 import { CheckInsRepository } from '@/repositories/check-ins-repository'
 import { CheckIn } from '@prisma/client'
 import dayjs from 'dayjs'
-import { MaxDistanceError } from './errors/max-distancer-error'
+import { LateCheckInValidationError } from './errors/late-check-in-validation-error'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface ValidateCheckInServiceRequest {
@@ -30,7 +30,7 @@ export class ValidateCheckInService {
     )
 
     if (distanceInMinutesFromCheckInCreation > 20) {
-      throw new MaxDistanceError()
+      throw new LateCheckInValidationError()
     }
 
     checkIn.validated_at = new Date()

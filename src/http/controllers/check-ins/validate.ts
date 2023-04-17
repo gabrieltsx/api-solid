@@ -9,9 +9,9 @@ export async function validate(request: FastifyRequest, reply: FastifyReply) {
 
   const { checkInId } = validateCheckInParamsSchema.parse(request.params)
 
-  const validateCheckInService = makeValidateCheckInService()
+  const validateCheckInUseCase = makeValidateCheckInService()
 
-  await validateCheckInService.handle({
+  await validateCheckInUseCase.handle({
     checkInId,
   })
 
